@@ -8,6 +8,11 @@
   </head>
   <body>
     <h1>URL Shortener</h1>
+
+    {% for message in get_flashed_messages() %}
+    <h2>{{ message }}</h2>
+    {% endfor %}
+
     <form action="your_url" method="post">
       <label for="url">Website URL*</label>
       <input type="url" name="url" id="" value="" required />
