@@ -33,5 +33,17 @@
       <br />
       <input type="submit" value="Shorten" />
     </form>
+    <br />
+
+    {% if codes %}
+    <h2>Short URLS created by you</h2>
+    <ul>
+      {% for code in codes %}
+      <a href="{{ url_for('redirect_to_url', code=code) }}"
+        ><li>{{ code }}</li></a
+      >
+      {% endfor %}
+    </ul>
+    {% endif %}
   </body>
 </html>
