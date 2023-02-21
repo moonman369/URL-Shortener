@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL Shortener - Page Not Found</title>
+    <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
-    <h1>404 Page Not Found :(</h1>
-    <p>We couldn't find what you were looking for.</p>
-    <p>
-      <a href="{{ url_for('home') }}">Click here</a> to return to our home page
-    </p>
+    {% for message in get_flashed_messages() %}
+    <h2>{{ message }}</h2>
+    {% endfor %} {% block base %} {% endblock %}
   </body>
 </html>
