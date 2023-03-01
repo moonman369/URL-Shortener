@@ -1,47 +1,83 @@
-{% extends 'base.html' %} {% block base %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} URL Shortener Home{% endblock %}</title>
-  </head>
-  <body>
-    <h1>URL Shortener</h1>
+{% extends 'base.html' %} {% block title %}URL Shortener{% endblock %} {% block
+main %}
 
-    <form action="your_url" method="post">
-      <label for="url">Website URL*</label>
-      <input type="url" name="url" id="" value="" required />
-      <br />
-      <label for="code">Short Name*</label>
-      <input type="text" name="code" id="" value="" required />
-      <br />
-      <input type="submit" value="Shorten" />
-    </form>
+<div class="container">
+  <div class="card-deck mb-3">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center">Website</h4>
+      </div>
+      <div class="card-body">
+        <form action="your-url" method="post">
+          <label for="code">Short Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="code"
+            id="code"
+            value=""
+            required
+          />
+          <br />
+          <label for="url">Website URL</label>
+          <input
+            type="url"
+            class="form-control"
+            name="url"
+            id="url"
+            value=""
+            required
+          />
+          <br />
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            Shorten
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal text-center">File</h4>
+      </div>
+      <div class="card-body">
+        <form action="your-url" method="post" enctype="multipart/form-data">
+          <label for="code">Short Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="code"
+            id="code"
+            value=""
+            required
+          />
+          <br />
+          <label for="long_url">Website URL</label>
+          <input
+            type="file"
+            class="form-control"
+            name="file"
+            id="file"
+            required
+          />
+          <br />
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            Shorten
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-    <br /><br />
-    <form action="your_url" method="post" enctype="multipart/form-data">
-      <label for="file">File*</label>
-      <input type="file" name="file" id="" value="" required />
-      <br />
-      <label for="code">Short Name*</label>
-      <input type="text" name="code" id="" value="" required />
-      <br />
-      <input type="submit" value="Shorten" />
-    </form>
-    <br />
+  {% if codes %}
+  <h2>Codes you have created:</h2>
+  <ul>
+    {% for code in codes %}
+    <a href="{{ url_for('redirect_to_url', code=code) }}">
+      <li>{{ code }}</li>
+    </a>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
 
-    {% if codes %}
-    <h2>Short URLS created by you</h2>
-    <ul>
-      {% for code in codes %}
-      <a href="{{ url_for('redirect_to_url', code=code) }}"
-        ><li>{{ code }}</li></a
-      >
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </body>
-</html>
 {% endblock %}

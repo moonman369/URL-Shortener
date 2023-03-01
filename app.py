@@ -10,7 +10,7 @@ app.secret_key = '  yomommasofatshebendslight'
 def home():
     return render_template('home.html', codes=session.keys())
 
-@app.route('/your_url', methods=['GET', 'POST'])
+@app.route('/your-url', methods=['GET', 'POST'])
 def your_url():
     if request.method == 'POST':
         urls = {}
