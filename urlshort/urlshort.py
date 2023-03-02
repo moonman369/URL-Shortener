@@ -28,7 +28,7 @@ def your_url():
             f = request.files['file']
             full_name = request.form['code'] + secure_filename(f.filename)
             # print(os.cwd())
-            f.save(os.path.join(f'{os.getcwd()}/static/user_files', full_name))
+            f.save(os.path.join(f'{os.getcwd()}/urlshort/static/user_files', full_name))
             urls[request.form['code']] = {'file': full_name}
 
         with open('urls.json', 'w') as url_file:

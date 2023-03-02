@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 flask = "*"
+pytest = "*"
+python-dotenv = "*"
+gunicorn = "*"
+waitress = "*"
 
 [dev-packages]
 
